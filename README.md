@@ -74,7 +74,76 @@ exec gunicorn $APPNAME.wsgi:application \
 ```
 
 ```
-chdmod +x start_gunicorn.sh
+chmod +x start_gunicorn.sh
 ./start_gunicorn.sh
 ```
+
+
+Kill a process at a port
+```
+fuser -k -n tcp 8000
+``
+
+
+The web server
+The web server receives an HTTP request from the client (the browser) and is usually responsible for load balancing, proxying requests to other processes, serving static files, caching and more. The web server usually interprets the request and sends it to the gateway. Common web server and Apache and Nginx. In this tutorial, we will use Nginx (which is also my favorite).
+
+The Gateway
+The gateway translates the request received from the web server so the application can handle it. The gateway is often responsible for logging and reporting as well. We will use Gunicorn as our Gateway for this tutorial.
+
+The Application
+As you may already guess, the application refers to your Django app. The app takes the interpreted request, process it using the logic you implemented as a developer, and returns a response.
+
+13. Run application with gunicorn
+```
+gunicorn --bind 0.0.0.0:8000 pollsapp.wsgi:application
+```
+
+sudo apt-get install supervisor
+
+
+
+
+
+
+[program:gunicorn] 
+directory=/home/django/app-django/app command=/root/.virtualenvs/virtual-env-name/bin/gunicorn --workers 3 --bind unix:/home/django/app-django/app/app.sock app.wsgi:application 
+autostart=true 
+autorestart=true 
+stderr_logfile=/var/log/gunicorn/gunicorn.out.log stdout_logfile=/var/log/gunicorn/gunicorn.err.log 
+user=ubuntu 
+group=w 
+environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
+[group:guni] 
+programs:gunicorn
+
+
+
+
+
+
+server {
+   listen 80; 
+    server_name 13.126.242.241; 
+    location = /favicon.ico { access_log off; log_not_found off; } 
+    location /static/ { 
+        root /home/ubuntu/projects/django-docker-kubernetes/pollsapp/; 
+    } 
+    location / { 
+        include proxy_params; 
+        proxy_pass http://unix:/home/ubuntu/projects/django-docker-kubernetes/pollsapp/app.sock; 
+    } 
+}
+
+    # +-------------------------+
+    # |           NGINX         |
+    # +-------------------------+
+    # +-------------------------+
+    # |         Gunicorn        |
+    # |          Django         |
+    # +-------------------------+
+    # +-----------+ +-----------+
+    # |  Postgres | |     S3    |
+    # +-----------+ +-----------+
+
 
