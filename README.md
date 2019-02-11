@@ -13,3 +13,68 @@ chmod 400 my-key-pair.pem
 6. Connect to EC2 instance
 ```
 ssh -i /path/my-key-pair.pem ec2-user@2001:db8:1234:1a00:9691:9503:25ad:1761
+```
+7. Update and upgrade
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
+8. Install git
+```
+sudo apt install and configure git
+git config --global user.name "Your Name"
+git config --global user.email "youremail@domain.com"
+```
+9. Clone repository
+```
+git clone https://github.com/vibhash1083/django-docker-kubernetes.git
+```
+10. Install and set up virtual environment
+11. Install nginx
+```
+sudo apt-get install nginx
+sudo service nginx start
+sudo service nginx stop
+```
+```
+sudo nano /etc/nginx/nginx.conf
+user ubuntu ubuntu;
+```
+```
+sudo nano /etc/nginx/sites-enabled/default
+access_log /home/ubuntu/projects/django-docker-kubernetes/pollsapp/nginx-access.log;
+error_log /home/ubuntu/projects/django-docker-kubernetes/pollsapp/nginx-error.log info;
+```
+12. Gunicorn
+```
+pip install gunicorn
+nano start_gunicorn.sh
+```
+```
+APPNAME=pollsapp
+APPDIR=/home/ubuntu/projects/django-docker-kubernetes/$APPNAME/
+
+LOGFILE=$APPDIR'gunicorn.log'
+ERRORFILE=$APPFIR'gunicorn-error.log'
+
+NUM_WORKERS=3
+
+ADDRESS=0.0.0.0:8000
+
+cd $APPDIR
+
+# source ~/.bashrc
+# workon $APPNAME
+source ../../denv/bin/activate
+
+exec gunicorn $APPNAME.wsgi:application \
+-w $NUM_WORKERS --bind=$ADDRESS \
+--log-level=debug \
+--log-file=$LOGFILE 2>>$LOGFILE  1>>$ERRORFILE &
+```
+
+```
+chdmod +x start_gunicorn.sh
+./start_gunicorn.sh
+```
+
