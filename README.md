@@ -53,16 +53,16 @@ No security and performance audit
 Lesser configuration option
 
 12. Architecture
-    # +-------------------------+
-    # |           NGINX         |
-    # +-------------------------+
-    # +-------------------------+
-    # |         Gunicorn        |
-    # |          Django         |
-    # +-------------------------+
-    # +-----------+ +-----------+
-    # |  Postgres | |     S3    |
-    # +-----------+ +-----------+
+>    # +-------------------------+
+>    # |           NGINX         |
+>    # +-------------------------+
+>    # +-------------------------+
+>    # |         Gunicorn        |
+>    # |          Django         |
+>    # +-------------------------+
+>    # +-----------+ +-----------+
+>    # |  Postgres | |     S3    |
+>    # +-----------+ +-----------+
 
 13. Set up nginx
 High performance web server, load balancer and reverse proxy
@@ -151,6 +151,8 @@ Make it executable and run it
 chmod +x start_gunicorn.sh
 ./start_gunicorn.sh
 ```
+18. Set up runit
+
 
 ### Notes
 Kill a process at a port
