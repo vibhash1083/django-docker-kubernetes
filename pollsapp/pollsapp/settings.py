@@ -127,6 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
 # Setup Django REST Framework
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': [
