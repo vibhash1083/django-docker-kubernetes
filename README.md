@@ -123,6 +123,7 @@ sudo ln -s /etc/nginx/sites-available/pollsapp /etc/nginx/sites-enabled/pollsapp
 ```
 
 Whenever config has to be disabled, remove symlink.
+
 17. Script to start gunicorn
 Create and edit start_gunicorn.sh file
 ```
@@ -151,13 +152,40 @@ chmod +x start_gunicorn.sh
 ./start_gunicorn.sh
 ```
 18. Set up runit
+```
+sudo apt-get install runit
+pip show gunicorn
+sudo mkdir /etc/service/pollsapp/
+sudo nano /etc/service/pollsapp/run
+```
 
+Add this script
+```
+#!/bin/sh
+#GUNICORN=/home/ubuntu/projects/venv/lib/python3.6/site-packages/gunicorn
+APPNAME=pollsapp
+ROOT=/home/ubuntu/projects/django-docker-kubernetes
+PID=/var/run/pollsapp.pid
+
+if [ -f $PID ]
+    then rm $PID
+fi
+
+cd $ROOT/$APPNAME
+source /home/ubuntu/projects/venv/bin/activate
+exec gunicorn $APPNAME.wsgi:application -c $ROOT/gunicorn.conf.py --pid=$PID
+```
+
+Create gunicorn.conf.py file
+```
+bind = "0.0.0.0:8000"
+```
 
 ### Notes
 Kill a process at a port
 ```
 fuser -k -n tcp 8000
-``
+```
 
 
 The web server
