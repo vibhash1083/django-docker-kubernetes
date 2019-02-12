@@ -78,7 +78,6 @@ sudo service nginx stop
 sudo service nginx restart
 ```
 Access server at http://<ip-address>
-```
 
 14 Set up gunicorn
 Gunicorn is python WSGI(Web server gateway interface) HTTP server for Unix. WSGI is a specification that describes how a web server communicates with web applications, and how web applications can be chained together to process one request.
