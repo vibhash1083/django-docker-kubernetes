@@ -180,6 +180,10 @@ Create gunicorn.conf.py file
 ```
 bind = "0.0.0.0:8000"
 ```
+Start runit service
+```
+sudo bash -x /etc/service/pollsapp/run
+```
 
 ### Notes
 Kill a process at a port
