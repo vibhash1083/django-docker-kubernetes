@@ -182,7 +182,7 @@ bind = "0.0.0.0:8000"
 ```
 Start runit service
 ```
-sudo bash -x /etc/service/pollsapp/run
+sudo bash /etc/service/pollsapp/run
 ```
 
 ### Notes
