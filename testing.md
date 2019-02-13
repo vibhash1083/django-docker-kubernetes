@@ -20,5 +20,6 @@ pip install coverage
 
 Check for coverage
 ```
-coverage run --source=app1,app2 ---omit=*/migrations/*  manage.py test
+coverage run --source=test manage.py test
+coverage report -m
 ```
