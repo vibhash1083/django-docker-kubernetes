@@ -197,3 +197,4 @@ The gateway translates the request received from the web server so the applicati
 The Application
 As you may already guess, the application refers to your Django app. The app takes the interpreted request, process it using the logic you implemented as a developer, and returns a response.
 
+https://github.com/sladkovm/docker-flask-gunicorn-nginx
