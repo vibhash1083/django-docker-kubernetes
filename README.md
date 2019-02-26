@@ -154,9 +154,10 @@ chmod +x start_gunicorn.sh
 18. Set up runit
 ```
 sudo apt-get install runit
+sudo apt install runit-systemd
 pip show gunicorn
-sudo mkdir /etc/service/pollsapp/
-sudo nano /etc/service/pollsapp/run
+sudo mkdir /etc/sv/pollsapp/
+sudo nano /etc/sv/pollsapp/run
 ```
 
 Add this script
@@ -182,7 +183,11 @@ bind = "0.0.0.0:8000"
 ```
 Start runit service
 ```
-sudo bash /etc/service/pollsapp/run
+sudo chmod u+x /etc/sv/pollsapp/run
+sudo ln -s /etc/sv/pollsapp/ /etc/service
+sudo bash /etc/sv/pollsapp/run
+or
+sudo sv start pollsapp
 ```
 
 ### Notes
