@@ -1,12 +1,15 @@
 # Docker with flask
-## List of all active docker images
+## List of all active docker containers and images
 docker ps
+docker images
 
-## List of all docker images
+## List of all docker containers and images
 docker ps -a
+docker images -a
 
-## Remove all docker images
+## Remove all docker containers and iamges
 docker rm $(docker ps -aq)
+docker rmi -f $(docker images -a -q)
 
 ## Run hello world
 docker run hello-world
