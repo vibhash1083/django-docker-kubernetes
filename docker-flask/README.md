@@ -38,8 +38,8 @@ virtualenv foo-env -p python3
 pip install django
 
 ## Build docker image
-docker build -t flask-tutorial:latest .
-docker run -d -p 5000:5000 flask-tutorial
+docker build -t docker-flask-url-shortener:latest .
+docker run -d -p 5000:5000 docker-flask-url-shortener
 
 ## Docker Volumne
 docker run -it -v /Users/vibhashchandra/projects:/dockervol ubuntu bash
