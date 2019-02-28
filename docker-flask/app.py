@@ -7,7 +7,7 @@ from flask import Flask, Response, request
 
 app = Flask(__name__)
 
-conn = redis.Redis('localhost')
+conn = redis.Redis('redis', port=6379)
 
 @app.route('/')
 def hello_world():

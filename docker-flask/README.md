@@ -42,4 +42,7 @@ docker run -d -p 5000:5000 flask-tutorial
 ## Docker Volumne
 docker run -it -v /Users/vibhashchandra/projects:/dockervol ubuntu bash
 
+## Install docker compose
+sudo apt  install docker-compose
+
 https://runnable.com/docker/python/dockerize-your-flask-application
