@@ -5,7 +5,6 @@ docker images
 
 ## List of all docker containers and images
 docker ps -a
-docker images -a
 
 ## Remove all docker containers and iamges
 docker rm $(docker ps -aq)
@@ -48,4 +47,9 @@ docker run -it -v /Users/vibhashchandra/projects:/dockervol ubuntu bash
 ## Install docker compose
 sudo apt  install docker-compose
 
+## Docker installation on ubuntu
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
 https://runnable.com/docker/python/dockerize-your-flask-application
+
+## Docker <none><none> and dangling images
+https://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/
