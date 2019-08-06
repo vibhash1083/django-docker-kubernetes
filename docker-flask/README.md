@@ -1,6 +1,7 @@
 # Docker with flask
 ## List of all active docker containers and images
 docker ps
+
 docker images
 
 ## List of all docker containers and images
